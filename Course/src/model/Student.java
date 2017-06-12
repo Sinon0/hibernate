@@ -1,5 +1,7 @@
 package model;
 
+import java.io.File;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +15,9 @@ public class Student {
 	private String grade;
 	private String photo;
 	private String sex;
+	
+	
+	
 	public String getSex() {
 		return sex;
 	}

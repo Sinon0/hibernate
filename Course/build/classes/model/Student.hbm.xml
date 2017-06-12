@@ -3,11 +3,16 @@
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
+<!-- model包下的student实体映射文件 -->
 <hibernate-mapping package="model">
+    <!-- 类名=student，指model包的类，映射到数据库中的表名叫做student，可以省略，表示表名会等于类名 -->
   <class name="Student" table="student">
+      <!-- hibernate要求每个表中都有一个id字段，column指的是列名，column可省略，省略表示字段名与类属性名一致 -->
      <id name="id" column="id">
+         <!-- generator属性表示数据库ID的产生方法，选用native指数据库自己解决数据库ID不重复的问题 -->
         <generator class="native"/>
      </id>
+     <!-- 具体JavaBean的属性字段，关联数据库表 -->
      <property name="name" column="name" type="string" length="50"></property>
      <property name="pwd" column="pwd" type="string" length="50"></property>
      <property name="phone" column="phone" type="string" length="50"></property>

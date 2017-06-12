@@ -14,16 +14,16 @@ public class StudentDAO {
 	Session session;
 	String hql;
 	/**
-	 * student registerdao method
+	 * student registerdao method and update method
 	 * @param student
 	 */
-	public void register(Student student){
+	public void update(Student student){
 		//get session
 		session=HibernateUtils.openSession();
 		//start transaction
 		Transaction tx=session.beginTransaction();
 		//save object
-		session.save(student);
+		session.saveOrUpdate(student);;
 		//submit transaction
 		tx.commit();
 		//close session
@@ -35,13 +35,13 @@ public class StudentDAO {
 	 * @return student
 	 */
 	public Student login(Student student){
-		//open session
+		//open session 
 		session=HibernateUtils.openSession();
 		hql="from Student where name=:name and pwd=:pwd";
 		//Query query=session.createQuery(hql);
 		//method one
-//		query.setString("name", student.getName());
-//		query.setString("pwd", student.getPwd());
+        //query.setString("name", student.getName());
+        //query.setString("pwd", student.getPwd());
 		//method two
 		//query.setProperties(student);
 		//method three
@@ -54,5 +54,19 @@ public class StudentDAO {
 			student=list.get(0);
 		}
 		return student;
+	}
+	/**
+	 * judgment password
+	 * @param student
+	 * @return
+	 */
+	public boolean checkpwd(Student student){
+		session=HibernateUtils.openSession();
+		hql="from Student where id=:id and pwd=:pwd";
+		Query query=session.createQuery(hql).setProperties(student);
+		@SuppressWarnings("unchecked")
+		List<Student> list=query.list();
+		session.close();
+		return list.size()>0?true:false;
 	}
 }
