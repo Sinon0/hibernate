@@ -16,7 +16,8 @@
 </s:if>
 <s:else>
 当前登录用户名:${student.name },<a href="${pageContext.request.contextPath }/modify.jsp">修改个人信息</a>
-</s:else>
+<a href="${pageContext.request.contextPath }/contact.jsp">紧急联系人信息</a>
+</s:else>    
 <br/>
 <br/>
 <a href="${pageContext.request.contextPath }/admin.jsp">进入后台管理</a>

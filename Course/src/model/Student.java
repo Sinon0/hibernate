@@ -1,10 +1,10 @@
 package model;
 
-import java.io.File;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Student {
@@ -16,14 +16,8 @@ public class Student {
 	private String photo;
 	private String sex;
 	
+	private Contact contact;
 	
-	
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
 	@Id
 	@GeneratedValue
 	public int getId() {
@@ -61,5 +55,24 @@ public class Student {
 	}
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	/**
+	 * @OneToOne Used to specity one to one 
+	 * @JoinColumn(name="cid")used to specity the column name,unique=true
+	 * @return
+	 */
+	@OneToOne
+	@JoinColumn(name="cid",unique=true)
+	public Contact getContact() {
+		return contact;
+	}
+	public void setContact(Contact contact) {
+		this.contact = contact;
 	}
 }

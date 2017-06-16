@@ -22,5 +22,6 @@
        <property name="hbm2ddl.auto">update</property>
        
        <mapping class="model.Student"/>
+       <mapping class="model.Contact"/>
      </session-factory>
 </hibernate-configuration>

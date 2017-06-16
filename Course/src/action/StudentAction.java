@@ -25,6 +25,8 @@ public class StudentAction {
 	private Student student;
 	StudentDAO dao=new StudentDAO();
 	
+	HttpServletRequest request=ServletActionContext.getRequest();
+	
 	public Student getStudent() {
 		return student;
 	}
@@ -108,9 +110,9 @@ public class StudentAction {
 	 * @throws IOException 
 	 */
 	public String update() throws IOException{
+		if(image!=null){
 		String fileName="uploadfiles";
 		String url=fileName;
-		HttpServletRequest request=ServletActionContext.getRequest();
 		fileName=request.getServletContext().getRealPath("")+fileName;
 		File file=new File(fileName);
 		if(!file.exists()){
@@ -183,9 +185,21 @@ public class StudentAction {
 		fileName=fileName+extension;
 		url=url+extension;
 		file=new File(fileName);
+		System.out.println(fileName);
 		FileUtils.copyFile(image, file);
+		//before the photo path,if not empty, to speak of its deleted
+		String oldurl=dao.getUrl(student);
+		if(oldurl!=null){
+			String oldfile=request.getServletContext().getRealPath("")+oldurl;
+			File myfile=new File(oldfile);
+			if(myfile.exists()){
+		      	myfile.delete();
+			}
+		}
 		student.setPhoto(url);
+	}
 		dao.update(student);
+		
 		HttpSession session=request.getSession();
 		session.setAttribute("STUDENT", student);
 		return "main";

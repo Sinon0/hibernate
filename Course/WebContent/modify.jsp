@@ -66,7 +66,7 @@ $(function (){
   <input type="hidden" name="student.id" value="${STUDENT.id }"/>
   </td></tr>
   <tr><td>旧密码:</td><td><input type="password" id="oldpwd"/></td></tr>
-  <tr><td>新密码:</td><td><input type="password" name="student.pwd"/></td></tr>
+  <tr><td>新密码:</td><td><input type="password" name="student.pwd" value="${STUDENT.pwd }"/></td></tr>
   
   <tr>
      <td>重复新密码:</td>
@@ -90,7 +90,9 @@ $(function (){
     <td>电话号码:</td><td><input type="text" name="student.phone" value="${STUDENT.phone}"/>
   </tr>
   <tr>
-     <td>照片:</td><td><input type="file" name="image" /></td>
+     <td>照片:</td><td><input type="file" name="image" />
+        <input type="hidden" name="student.photo" value="${STUDENT.photo }"/>
+     </td>
   </tr>
   <tr><td colspan="2"><input type="submit" value="修改"/></td></tr>
 </table>

@@ -69,4 +69,19 @@ public class StudentDAO {
 		session.close();
 		return list.size()>0?true:false;
 	}
+	
+	/**
+	 * to determine whether the image path is empty,if not empty,it will be deletion
+	 * 1.get image path
+	 */
+	public String getUrl(Student student){
+		//get image path
+		hql="select photo from Student where id=:id";
+		Session session=HibernateUtils.openSession();
+		Query query=session.createQuery(hql).setProperties(student);
+		@SuppressWarnings("unchecked")
+		List<String> list=query.list();
+		session.close();
+		return list.get(0);
+	}
 }
